@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { AuthSidebar } from "./AuthSidebar";
+import { Link } from "react-router-dom";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <nav className="relative flex flex-col px-6 py-6 bg-gray-600 md:py-10 md:h-[160px] w-full font-[Montserrat]">
@@ -32,10 +34,9 @@ export function Navbar() {
         {[
           { name: "HOME", url: "/" },
           { name: "ABOUT", url: "/about" },
-          { name: "TAILORING", url: "/tailoring" },//includes design and templates 
+          { name: "TAILORING", url: "/tailoring" },
           { name: "CONTACT", url: "/contact" },
           { name: "FAQ", url: "/faq" },
-          // { name: "DEF", url: "/def" },
         ].map((link) => (
           <li key={link.name}>
             <a
@@ -47,7 +48,6 @@ export function Navbar() {
           </li>
         ))}
 
-        {/* Icons inside mobile menu */}
         {isOpen && (
           <div className="flex flex-row mt-4 space-x-4 md:hidden">
             <button
@@ -76,9 +76,14 @@ export function Navbar() {
         </button>
         <button
           aria-label="Shopping Cart"
-          className="p-3 rounded-full hover:bg-white/20 transition-all transform hover:scale-105 cursor-pointer"
+          className="relative p-3 rounded-full hover:bg-white/20 transition-all transform hover:scale-105 cursor-pointer"
         >
-          <ShoppingCart className="h-6 w-6 text-white" />
+          <Link to="/cart">
+            <ShoppingCart className="h-6 w-6 text-white" />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+              3
+            </span>
+          </Link>
         </button>
       </div>
       <AuthSidebar

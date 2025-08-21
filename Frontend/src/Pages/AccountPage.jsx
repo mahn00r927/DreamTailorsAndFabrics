@@ -1,8 +1,53 @@
 import { useState } from "react";
-import { User, Lock, ShoppingBag, Settings } from "lucide-react";
+import { User, Lock, ShoppingBag, Settings, Ruler } from "lucide-react";
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [unit, setUnit] = useState("cm"); // cm/in toggle
+  const [profiles, setProfiles] = useState([
+    {
+      id: 1,
+      name: "Default Profile",
+      length: 170,
+      chest: 90,
+      waist: 70,
+      shoulder: 40,
+      sleeve: 60,
+    },
+  ]);
+  const [newProfile, setNewProfile] = useState({
+    length: "",
+    chest: "",
+    shoulder: "",
+    sleeve: "",
+    waist: "",
+    name: "",
+  });
+
+  const handleAddProfile = (e) => {
+    e.preventDefault();
+    if (!newProfile.name) return;
+
+    setProfiles([
+      ...profiles,
+      {
+        id: Date.now(),
+        name: newProfile.name,
+        height: newProfile.length,
+        chest: newProfile.chest,
+        waist: newProfile.waist,
+        sleeve: newProfile.sleeve,
+      },
+    ]);
+    setNewProfile({
+      name: "",
+      height: "",
+      chest: "",
+      waist: "",
+      shoulder: "",
+      sleeve: "",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8 px-4">
@@ -64,6 +109,16 @@ export default function AccountPage() {
         >
           <Lock size={18} /> Security
         </button>
+        <button
+          onClick={() => setActiveTab("measurements")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium transition ${
+            activeTab === "measurements"
+              ? "bg-orange-500 text-white"
+              : "bg-white shadow hover:bg-gray-100"
+          }`}
+        >
+          <Ruler size={18} /> Measurements
+        </button>
       </div>
 
       {/* Content Section */}
@@ -79,22 +134,99 @@ export default function AccountPage() {
             </p>
           </div>
         )}
-
         {activeTab === "orders" && (
           <div>
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               My Orders
             </h3>
-            <ul className="space-y-3">
-              <li className="p-4 border rounded-md hover:shadow">
-                Order #12345 – Status:{" "}
-                <span className="text-orange-600">Shipped</span>
-              </li>
-              <li className="p-4 border rounded-md hover:shadow">
-                Order #12346 – Status:{" "}
-                <span className="text-gray-600">Processing</span>
-              </li>
-            </ul>
+
+            {/* Example Orders */}
+            {[
+              {
+                id: "12345",
+                product: "Kurta (Blue Cotton)",
+                date: "Aug 15, 2025",
+                status: "Shipped",
+                timeline: [
+                  "Order Placed",
+                  "Processing",
+                  "Shipped",
+                  "Out for Delivery",
+                ],
+                currentStep: 2,
+              },
+              {
+                id: "12346",
+                product: "Blazer (Black Wool)",
+                date: "Aug 10, 2025",
+                status: "Delivered",
+                timeline: [
+                  "Order Placed",
+                  "Processing",
+                  "Shipped",
+                  "Delivered",
+                ],
+                currentStep: 3,
+              },
+            ].map((order) => (
+              <div
+                key={order.id}
+                className="mb-6 p-4 border rounded-md hover:shadow bg-gray-50"
+              >
+                {/* Order Header */}
+                <div className="flex justify-between items-center mb-3">
+                  <h4 className="font-semibold text-gray-800">
+                    Order #{order.id} – {order.product}
+                  </h4>
+                  <span className="text-sm text-gray-500">{order.date}</span>
+                </div>
+
+                <p className="text-sm mb-4">
+                  Status:{" "}
+                  <span className="font-medium text-orange-600">
+                    {order.status}
+                  </span>
+                </p>
+
+                {/* Timeline */}
+                <div className="flex items-center justify-between">
+                  {order.timeline.map((step, index) => (
+                    <div
+                      key={index}
+                      className="flex-1 flex flex-col items-center"
+                    >
+                      <div
+                        className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold ${
+                          index <= order.currentStep
+                            ? "bg-gray-800 text-white"
+                            : "bg-gray-300 text-gray-600"
+                        }`}
+                      >
+                        {index + 1}
+                      </div>
+                      <p
+                        className={`mt-2 text-xs text-center ${
+                          index <= order.currentStep
+                            ? "text-gray-500"
+                            : "text-gray-500"
+                        }`}
+                      >
+                        {step}
+                      </p>
+                      {index < order.timeline.length - 1 && (
+                        <div
+                          className={`h-1 w-full ${
+                            index < order.currentStep
+                              ? "bg-gray-500"
+                              : "bg-gray-300"
+                          }`}
+                        ></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
@@ -103,37 +235,31 @@ export default function AccountPage() {
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Account Settings
             </h3>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <input
-    type="text"
-    placeholder="Full Name"
-    className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
-  />
-  <input
-    type="email"
-    placeholder="Email Address"
-    className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
-  />
-  <input
-    type="tel"
-    placeholder="Phone Number"
-    className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
-  />
-  <textarea
-    placeholder="Address"
-    rows="3"
-    className="w-full p-3 border rounded-md resize-none focus:ring-2 focus:ring-orange-400 focus:outline-none md:col-span-2"
-  />
-  {/* <input
-    type="password"
-    placeholder=" Password"
-    className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
-  /> */}
-  <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-md w-full md:col-span-2">
-    Save Changes
-  </button>
-</form>
-
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <textarea
+                placeholder="Address"
+                rows="3"
+                className="w-full p-3 border rounded-md resize-none focus:ring-2 focus:ring-orange-400 focus:outline-none md:col-span-2"
+              />
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-md w-full md:col-span-2">
+                Save Changes
+              </button>
+            </form>
           </div>
         )}
 
@@ -145,6 +271,132 @@ export default function AccountPage() {
             <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">
               Change Password
             </button>
+          </div>
+        )}
+
+        {activeTab === "measurements" && (
+          <div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Measurement Profiles
+            </h3>
+
+            {/* Unit Toggle */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-medium text-gray-700">Unit:</span>
+              <button
+                type="button"
+                onClick={() => setUnit("cm")}
+                className={`px-3 py-1 rounded-md ${
+                  unit === "cm"
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-100 hover:bg-gray-200"
+                }`}
+              >
+                cm
+              </button>
+              <button
+                type="button"
+                onClick={() => setUnit("in")}
+                className={`px-3 py-1 rounded-md ${
+                  unit === "in"
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-100 hover:bg-gray-200"
+                }`}
+              >
+                inches
+              </button>
+            </div>
+
+            {/* Profiles List */}
+            <ul className="space-y-3 mb-6">
+              {profiles.map((profile) => (
+                <li
+                  key={profile.id}
+                  className="p-4 border rounded-md flex justify-between items-center hover:shadow"
+                >
+                  <div>
+                    <p className="font-medium">{profile.name}</p>
+                    <p className="text-sm text-gray-600">
+                      Chest: {profile.chest}
+                      {unit}, Waist: {profile.waist}
+                      {unit}, Length: {profile.length}
+                      {unit}, Shoulder: {profile.shoulder}
+                      {unit}, Sleeve: {profile.sleeve}
+                      {unit} {/* 👈 added */}
+                    </p>
+                  </div>
+                  <button className="text-orange-600 hover:underline">
+                    Edit
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {/* Add New Profile */}
+            <form
+              onSubmit={handleAddProfile}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              <input
+                type="text"
+                placeholder="Profile Name"
+                value={newProfile.name || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, name: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                required
+              />
+              <input
+                type="number"
+                placeholder={`Chest (${unit})`}
+                value={newProfile.chest || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, chest: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="number"
+                placeholder={`Waist (${unit})`}
+                value={newProfile.waist || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, waist: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="number"
+                placeholder={`Length (${unit})`}
+                value={newProfile.length || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, length: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="number"
+                placeholder={`Shoulder (${unit})`}
+                value={newProfile.shoulder || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, shoulder: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+              <input
+                type="number"
+                placeholder={`Sleeve (${unit})`}
+                value={newProfile.sleeve || ""}
+                onChange={(e) =>
+                  setNewProfile({ ...newProfile, sleeve: e.target.value })
+                }
+                className="w-full p-3 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+              />
+
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-md w-full md:col-span-2">
+                Add Profile
+              </button>
+            </form>
           </div>
         )}
       </div>

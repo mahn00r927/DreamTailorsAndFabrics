@@ -51,7 +51,7 @@ export function AuthSidebar({ isOpen, onClose }) {
                 placeholder="Password"
                 className="p-3 sm:p-4 rounded-md border border-gray-400 bg-gray-700 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#468A9A] mt-3"
               />
-              <button className="bg-[#0c4c5a] text-white py-3 sm:py-4 rounded-md hover:bg-[#3a6f7a] transition-colors duration-300 mt-4">
+              <button className="bg-gray-900 text-white py-3 sm:py-4 rounded-md hover:bg-[#3a6f7a] transition-colors duration-300 mt-4">
                 Login
               </button>
               <div className="flex flex-col sm:flex-row justify-between mt-2 text-sm sm:text-base gap-2 sm:gap-0">
@@ -102,7 +102,7 @@ export function AuthSidebar({ isOpen, onClose }) {
                 placeholder="Confirm Password"
                 className="w-full p-2 sm:p-3 rounded-md border border-gray-400 bg-gray-700 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#468A9A]"
               />
-              <button className="w-full bg-[#0c4c5a] text-white py-2 sm:py-3 rounded-md hover:bg-[#3a6f7a] transition-colors duration-300 mt-4">
+              <button className="w-full bg-gray-900 text-white py-2 sm:py-3 rounded-md hover:bg-[#3a6f7a] transition-colors duration-300 mt-4">
                 Sign Up
               </button>
             </form>

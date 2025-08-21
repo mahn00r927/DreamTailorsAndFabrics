@@ -12,6 +12,9 @@ import { AuthSidebar } from "./Components/AuthSidebar";
 import { useState } from "react";
 import TailoringPage from "./Pages/Tailoring";
 import AccountPage from "./Pages/AccountPage";
+import CartPage from "./Components/Cart";
+import Checkout from "./Pages/Checkout";
+import MeasurementForm from "./Components/MeasurementForm";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
@@ -38,6 +41,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/tailoring" element={<TailoringPage />} />
         <Route path="/account" element={<AccountPage/>}></Route>
+        <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/checkout' element={<Checkout/>}></Route>
+        <Route path='/form' element={<MeasurementForm/>}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

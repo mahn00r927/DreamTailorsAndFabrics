@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search } from "lucide-react"; // Search icon
+import { Search } from "lucide-react"; 
 import dress2 from "../assets/Pic/dress2.png";
 import dress3 from "../assets/Pic/dress3.png";
 import dress4 from "../assets/Pic/dress4.png";
@@ -11,6 +11,7 @@ import dress9 from "../assets/Pic/dress9.jpg";
 import dress10 from "../assets/Pic/dress10.jpg";
 import dress11 from "../assets/Pic/dress11.jpg";
 import dress12 from "../assets/Pic/dress12.jpg";
+import FabricOptionsModal from "./OptionsModal";
 
 const images = [
   dress2, dress3, dress4, dress5, dress6,
@@ -34,9 +35,9 @@ const products = Array.from({ length: 25 }, (_, i) => {
     "Suiting Fabrics", "Silk (Formal)", "Karandi (Warm)", "Twill",
   ];
   const prices = [
-    "₨ 1,500 /m", "₨ 2,200 /m", "₨ 1,800 /m", "₨ 2,800 /m",
-    "₨ 6,000 /m", "₨ 2,000 /m", "₨ 1,400 /m", "₨ 3,500 /m",
-    "₨ 4,500 /m", "₨ 2,600 /m", "₨ 3,000 /m", "₨ 7,000 /m"
+    "₨ 1,500 ", "₨ 2,200 ", "₨ 1,800", "₨ 2,800 ",
+    "₨ 6,000 ", "₨ 2,000 ", "₨ 1,400 ", "₨ 3,500 ",
+    "₨ 4,500 ", "₨ 2,600 ", "₨ 3,000", "₨ 7,000 "
   ];
 
   return {
@@ -46,14 +47,16 @@ const products = Array.from({ length: 25 }, (_, i) => {
     brand: brands[i % brands.length],
     type: types[i % types.length],
     image: images[i % images.length],
-    color: ["Black", "White", "Blue", "Gray", "Brown"][i % 5], // demo color
-    material: names[i % names.length].split(" ")[0], // demo material
+    color: ["Black", "White", "Blue", "Gray", "Brown"][i % 5],
+    material: names[i % names.length].split(" ")[0],
   };
 });
 
 export function FabricSection() {
   const [visibleCount, setVisibleCount] = useState(8);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedFabric, setSelectedFabric] = useState(null);
   const [filters, setFilters] = useState({
     color: "",
     material: "",
@@ -103,7 +106,6 @@ export function FabricSection() {
 
       {/* Filter Section */}
       <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
-
         <select
           value={filters.material}
           onChange={(e) => setFilters({ ...filters, material: e.target.value })}
@@ -150,7 +152,13 @@ export function FabricSection() {
             <p className="text-gray-500">{product.brand}</p>
             <p className="text-gray-600">{product.type}</p>
             <p className="text-gray-800 font-bold mt-2">{product.price}</p>
-            <button className="mt-4 px-4 py-2 bg-[#ff9800] text-white rounded-lg hover:bg-orange-600 transition-all duration-300 w-25 font-semibold transform hover:scale-105 hover:shadow-md">
+            <button
+              onClick={() => {
+                setSelectedFabric(product);
+                setModalOpen(true);
+              }}
+              className="mt-4 px-4 py-2 bg-[#ff9800] text-white rounded-lg hover:bg-orange-600 transition-all duration-300 w-25 font-semibold transform hover:scale-105 hover:shadow-md"
+            >
               Select
             </button>
           </div>
@@ -168,6 +176,18 @@ export function FabricSection() {
           </button>
         </div>
       )}
+
+      {/* Options Modal */}
+      <FabricOptionsModal
+  isOpen={isModalOpen}
+  onClose={() => setModalOpen(false)}
+  fabric={selectedFabric}
+  onAddToCart={(fabric) => {
+    console.log("Fabric added to cart:", fabric);
+    // yahan tum global cart state ya Redux/Context se bhi manage kar sakte ho
+  }}
+/>
+
     </section>
   );
 }
