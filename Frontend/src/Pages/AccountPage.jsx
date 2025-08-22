@@ -3,7 +3,7 @@ import { User, Lock, ShoppingBag, Settings, Ruler } from "lucide-react";
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState("overview");
-  const [unit, setUnit] = useState("cm"); // cm/in toggle
+  const [unit, setUnit] = useState("cm"); 
   const [profiles, setProfiles] = useState([
     {
       id: 1,
@@ -322,7 +322,7 @@ export default function AccountPage() {
                       {unit}, Length: {profile.length}
                       {unit}, Shoulder: {profile.shoulder}
                       {unit}, Sleeve: {profile.sleeve}
-                      {unit} {/* 👈 added */}
+                      {unit} 
                     </p>
                   </div>
                   <button className="text-orange-600 hover:underline">

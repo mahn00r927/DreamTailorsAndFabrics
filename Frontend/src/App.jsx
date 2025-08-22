@@ -15,6 +15,7 @@ import AccountPage from "./Pages/AccountPage";
 import CartPage from "./Components/Cart";
 import Checkout from "./Pages/Checkout";
 import MeasurementForm from "./Components/MeasurementForm";
+import Dashboard from "./Admin/Pages/Dashboard";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/cart' element={<CartPage/>}/>
         <Route path='/checkout' element={<Checkout/>}></Route>
         <Route path='/form' element={<MeasurementForm/>}></Route>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>

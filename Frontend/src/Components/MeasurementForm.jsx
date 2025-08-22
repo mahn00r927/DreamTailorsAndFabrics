@@ -141,7 +141,7 @@ export default function MeasurementForm() {
             </div>
           </div>
 
-          {/* Garment Measurements */}
+          {/*  Measurements */}
           <h3 className="text-lg font-semibold text-gray-800 mt-6">
              Measurements
           </h3>

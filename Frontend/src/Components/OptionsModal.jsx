@@ -23,7 +23,6 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-96 p-6 relative animate-fadeIn scale-95">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black text-lg"
@@ -31,7 +30,7 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
           ✕
         </button>
 
-        {/* Fabric Image */}
+        
         <div className="flex justify-center">
           <img
             src={fabric.image}
@@ -40,7 +39,7 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
           />
         </div>
 
-        {/* Fabric Info */}
+      
         <h2 className="text-xl font-bold text-gray-800 text-center mt-3">
           {fabric.name}
         </h2>

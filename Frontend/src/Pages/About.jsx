@@ -86,9 +86,6 @@ export default function About() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
                Contact Us
               </h2>
-          {/* <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-            Contact Us
-          </h3> */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <p className="text-lg text-gray-700 flex items-center">
@@ -100,13 +97,13 @@ export default function About() {
                   // href="tel:+11234567890"
                   className="text-lg text-gray-800 hover:text-indigo-600 block"
                 >
-                 03021206664 (WhatsApp Only)
+                 03 02 1206664 (WhatsApp Only)
                 </a>
                 <a
                   href="tel:+19876543210"
                   className="text-lg text-gray-800 hover:text-indigo-600 block"
                 >
-                  +1 (987) 654-3210
+                  03 02 1206664
                 </a>
               </div>
               <p className="mt-4 text-sm text-gray-500">
@@ -157,19 +154,13 @@ export default function About() {
                   </svg>
                 </a>
                 <a
-                  href="https://wa.me/11234567890"
+                  href="https://wa.me/03021206664"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
                   className="text-gray-600 hover:text-blue-700"
                 >
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.5 3.5A11 11 0 0012 1a11 11 0 00-9.6 5.9A11 11 0 002 21l3.4-1 1.1-.4A10.9 10.9 0 0012 23a11 11 0 008.5-19.5zM12 21a9 9 0 01-4.6-1.2l-.33-.2-2.1.6.6-2.1-.2-.34A9 9 0 1112 21zm4.1-6.6c-.2-.1-1.2-.6-1.4-.7s-.5-.2-.7.2-.8.7-1 .8c-.2.1-.4.05-.6-.1-.6-.4-1.8-1-2.9-1.9-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.2.2-.4.3-.6.1-.2 0-.4-.05-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.4-.5-.7-.5-.2 0-.4 0-.6 0-.2 0-.5.1-.8.3.3-.1 1.2-.4 1.6-.5.4-.1.7-.1 1.1 0 .4.1 1 .6 1.1.8.1.2.3.4.4.6.1.2.2.4.2.6s-.1.4-.1.6c0 .2-.5 1.2-.5 1.4s0 .4.2.6c.2.2 1 1.6 2.3 2.5 1.5 1 2.5 1.1 2.8 1.2.3.1.9.1 1.2 0 .3-.1 1-.5 1.2-.9.2-.4.2-.8 0-1-.2-.2-.5-.3-.7-.4z" />
-                  </svg>
+                  <Phone className="w-6 h-6 " />
                 </a>
                 <a
                   href="https://youtube.com/dreamtailorsandfabrics"

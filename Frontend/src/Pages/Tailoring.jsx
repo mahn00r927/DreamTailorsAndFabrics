@@ -49,7 +49,7 @@ export default function StitchingPage() {
             key={garment}
             onClick={() => {
               setSelectedGarment(garment);
-              setSelectedStyles([]); // reset styles when garment changes
+              setSelectedStyles([]); 
             }}
             className={`p-6 rounded-2xl shadow-md cursor-pointer transition transform hover:scale-105 ${
               selectedGarment === garment

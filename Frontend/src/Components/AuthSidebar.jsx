@@ -108,7 +108,7 @@ export function AuthSidebar({ isOpen, onClose }) {
             </form>
           )}
 
-          {/* Back/Home Button (only for login mode) */}
+          {/* Back to Home Button */}
           {isLogin && (
             <div className="mt-auto">
               <button

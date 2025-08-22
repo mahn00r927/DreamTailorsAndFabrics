@@ -83,7 +83,7 @@ export function FabricSection() {
 
   return (
     <section className="py-12 px-6 bg-gray-50 font-[Montserrat]" id="fabric">
-      {/* Heading + Search Bar */}
+      {/* Heading  */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 md:mb-0 text-center">
           Browse Our Fabrics
@@ -184,7 +184,6 @@ export function FabricSection() {
   fabric={selectedFabric}
   onAddToCart={(fabric) => {
     console.log("Fabric added to cart:", fabric);
-    // yahan tum global cart state ya Redux/Context se bhi manage kar sakte ho
   }}
 />
 
