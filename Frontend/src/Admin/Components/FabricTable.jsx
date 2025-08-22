@@ -9,7 +9,7 @@ export default function FabricManager() {
       price: "Rs.10,000",
       material: "100% Cotton",
       brand: "GulAhmed",
-      image: "https://via.placeholder.com/80", // sample image
+      image: "https://via.placeholder.com/80", 
     },
     {
       id: 2,

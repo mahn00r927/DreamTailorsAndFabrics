@@ -1,9 +1,28 @@
 import { useState } from "react";
 import MeasurementForm from "../Components/MeasurementForm";
+import kurta from "../assets/Pic/kurta.jpg";
+import suit from "../assets/Pic/suit.jpg";
+import trouser from "../assets/Pic/trouser.jpg";
+import blazer from "../assets/Pic/blazer.jpg";
+import shirt from "../assets/Pic/shirt.jpg";
+
+const garmentImages = {
+  Kurta: kurta,
+  Suit: suit,
+  Trouser: trouser,
+  Blazer: blazer,
+  Shirt: shirt,
+};
+
 const garments = {
   Kurta: {
     description: "Traditional and elegant wear for every occasion.",
-    styles: ["Band Collar", "Round Collar", "Straight Cuffs", "Embroidered Cuffs"],
+    styles: [
+      "Band Collar",
+      "Round Collar",
+      "Straight Cuffs",
+      "Embroidered Cuffs",
+    ],
   },
   Suit: {
     description: "Formal attire for business and events.",
@@ -15,11 +34,21 @@ const garments = {
   },
   Blazer: {
     description: "Smart-casual jacket for semi-formal wear.",
-    styles: ["Single Breasted", "Double Breasted", "Patch Pockets", "Classic Fit"],
+    styles: [
+      "Single Breasted",
+      "Double Breasted",
+      "Patch Pockets",
+      "Classic Fit",
+    ],
   },
   Shirt: {
     description: "Essential wardrobe piece for daily wear.",
-    styles: ["Button Down Collar", "Spread Collar", "French Cuffs", "Casual Fit"],
+    styles: [
+      "Button Down Collar",
+      "Spread Collar",
+      "French Cuffs",
+      "Casual Fit",
+    ],
   },
 };
 
@@ -43,13 +72,13 @@ export default function StitchingPage() {
       </h1>
 
       {/* Garment Templates */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {Object.keys(garments).map((garment) => (
           <div
             key={garment}
             onClick={() => {
               setSelectedGarment(garment);
-              setSelectedStyles([]); 
+              setSelectedStyles([]);
             }}
             className={`p-6 rounded-2xl shadow-md cursor-pointer transition transform hover:scale-105 ${
               selectedGarment === garment
@@ -57,6 +86,13 @@ export default function StitchingPage() {
                 : "bg-white text-gray-800"
             }`}
           >
+            {/* Garment Image */}
+            <img
+              src={garmentImages[garment]}
+              alt={garment}
+              className="w-60 h-50 object-cover rounded-xl mb-4"
+            />
+
             <h2 className="text-2xl font-semibold mb-2">{garment}</h2>
             <p className="text-sm">{garments[garment].description}</p>
           </div>
@@ -70,7 +106,7 @@ export default function StitchingPage() {
             {selectedGarment} Styles
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {garments[selectedGarment].styles.map((style) => (
+            {garments[selectedGarment].styles.map((style, idx) => (
               <div
                 key={style}
                 onClick={() => handleStyleClick(style)}
@@ -80,6 +116,14 @@ export default function StitchingPage() {
                     : "bg-gray-100 text-gray-800 hover:bg-indigo-100"
                 }`}
               >
+                {/* Style image */}
+                <img
+                  src={`../assets/${selectedGarment.toLowerCase()}-${
+                    idx + 1
+                  }.jpg`}
+                  alt={style}
+                  className="w-full h-24 object-cover rounded-lg mb-2"
+                />
                 {style}
               </div>
             ))}

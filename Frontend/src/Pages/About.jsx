@@ -1,10 +1,13 @@
 import { Phone } from "lucide-react";
+import aboutPic from "../assets/Pic/hero1.png"; // apna image ka path sahi rakho
+
 export default function About() {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="bg-white shadow-xl rounded-3xl p-8 md:p-12 mb-16">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left side - Text */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-gray-900">Our Story</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -19,58 +22,19 @@ export default function About() {
                 workshop.
               </p>
             </div>
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Our Expertise
-              </h2>
-              <ul className="space-y-4 text-lg text-gray-600">
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-gray-700 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Custom Wedding Attire
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6  text-gray-700 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Premium Fabric Selection
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-gray-700 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Bespoke Tailoring
-                </li>
-              </ul>
+
+            {/* Right side - Image */}
+            <div>
+              <img
+                src={aboutPic}
+                alt="Dream Tailors and Fabrics"
+                className="rounded-2xl shadow-lg w-full object-cover h-96"
+              />
             </div>
           </div>
         </div>
 
+        {/* Mission Section */}
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
           <p className="text-xl text-gray-600 leading-relaxed">
@@ -83,21 +47,17 @@ export default function About() {
 
         {/* Contact & Social */}
         <div className="mt-12 max-w-3xl mx-auto bg-white rounded-2xl shadow p-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-               Contact Us
-              </h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            {/* Phone Section */}
             <div>
               <p className="text-lg text-gray-700 flex items-center">
                 <Phone className="w-5 h-5 mr-2 text-blue-700" />
                 Phone:
               </p>
               <div className="mt-2 space-y-1">
-                <a
-                  // href="tel:+11234567890"
-                  className="text-lg text-gray-800 hover:text-indigo-600 block"
-                >
-                 03 02 1206664 (WhatsApp Only)
+                <a className="text-lg text-gray-800 hover:text-indigo-600 block">
+                  03 02 1206664 (WhatsApp Only)
                 </a>
                 <a
                   href="tel:+19876543210"
@@ -111,6 +71,7 @@ export default function About() {
               </p>
             </div>
 
+            {/* Social Section */}
             <div>
               <p className="text-lg text-gray-700 flex items-center">
                 <svg
@@ -143,7 +104,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="text-gray-600 hover:text-pink-600"
+                  className="text-gray-600 hover:bg-gradient-to-tr hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 hover:text-white p-2 rounded-full transition duration-300"
                 >
                   <svg
                     className="w-6 h-6"
@@ -153,6 +114,7 @@ export default function About() {
                     <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.3A3.7 3.7 0 1015.7 12 3.7 3.7 0 0012 8.3zm6.4-.9a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z" />
                   </svg>
                 </a>
+
                 <a
                   href="https://wa.me/03021206664"
                   target="_blank"
