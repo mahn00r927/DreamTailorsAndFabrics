@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, ShoppingCart, User } from "lucide-react";
+import { Menu, X, ShoppingCart, User, MessageCircle } from "lucide-react";
 import { AuthSidebar } from "./AuthSidebar";
 import { Link } from "react-router-dom";
 export function Navbar() {
@@ -63,6 +63,13 @@ export function Navbar() {
             >
               <ShoppingCart className="h-6 w-6 text-white" />
             </button>
+            <button
+              aria-label="Chat"
+              className="p-3 rounded-full hover:bg-white/20 transition-all transform hover:scale-105 cursor-pointer"
+              onClick={() => alert("Open chat with admin")} // yahan ap apna chat system integrate kar sakti ho
+            >
+              <MessageCircle className="h-6 w-6 text-white" />
+            </button>
           </div>
         )}
       </ul>
@@ -84,6 +91,13 @@ export function Navbar() {
               3
             </span>
           </Link>
+        </button>
+        <button
+          aria-label="Chat"
+          className="p-3 rounded-full hover:bg-white/20 transition-all transform hover:scale-105 cursor-pointer"
+          onClick={() => alert("Open chat with admin")}
+        >
+          <MessageCircle className="h-6 w-6 text-white" />
         </button>
       </div>
       <AuthSidebar

@@ -11,11 +11,13 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
   };
 
   const handleStitch = () => {
+    if (onAddToCart) onAddToCart(fabric); // ✅ Add to cart
     navigate("/tailoring", { state: { fabric } });
     onClose();
   };
 
   const handleCheckout = () => {
+    if (onAddToCart) onAddToCart(fabric); // ✅ Add to cart
     navigate("/checkout", { state: { fabric } });
     onClose();
   };
@@ -30,7 +32,7 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
           ✕
         </button>
 
-        
+        {/* Fabric Image */}
         <div className="flex justify-center">
           <img
             src={fabric.image}
@@ -39,7 +41,7 @@ export default function FabricOptionsModal({ isOpen, onClose, fabric, onAddToCar
           />
         </div>
 
-      
+        {/* Fabric Info */}
         <h2 className="text-xl font-bold text-gray-800 text-center mt-3">
           {fabric.name}
         </h2>

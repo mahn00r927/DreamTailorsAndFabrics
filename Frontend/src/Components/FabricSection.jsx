@@ -9,16 +9,15 @@ import dress7 from "../assets/Pic/dress7.jpg";
 import dress8 from "../assets/Pic/dress8.jpg";
 import dress9 from "../assets/Pic/dress9.jpg";
 import dress10 from "../assets/Pic/dress10.jpg";
-import dress11 from "../assets/Pic/dress11.jpg";
-import dress12 from "../assets/Pic/dress12.jpg";
+import dress1 from "../assets/Pic/dress11.jpg";
 import FabricOptionsModal from "./OptionsModal";
 
 const images = [
   dress2, dress3, dress4, dress5, dress6,
-  dress7, dress8, dress9, dress10, dress11, dress12
+  dress7, dress8, dress9, dress10, dress1
 ];
 
-const products = Array.from({ length: 25 }, (_, i) => {
+const products = Array.from({ length: 24 }, (_, i) => {
   const id = i + 1;
   const names = [
     "Cotton Fabric", "Wash & Wear", "Khaddar Fabric", "Linen Fabric",
@@ -169,7 +168,7 @@ export function FabricSection() {
       {visibleCount < filteredProducts.length && (
         <div className="text-center mt-6">
           <button
-            onClick={() => setVisibleCount((prev) => prev + 6)}
+            onClick={() => setVisibleCount((prev) => prev + 4)}
             className="px-6 py-2 text-white font-medium rounded-lg bg-orange-700 hover:bg-orange-800 transform hover:scale-105 transition-all duration-300 cursor-pointer shadow-md hover:shadow-lg"
           >
             Show More

@@ -5,6 +5,24 @@ import suit from "../assets/Pic/suit.jpg";
 import trouser from "../assets/Pic/trouser.jpg";
 import blazer from "../assets/Pic/blazer.jpg";
 import shirt from "../assets/Pic/shirt.jpg";
+import bandcollor from "../assets/Pic/band collor.jpg";
+import roundcollor from "../assets/Pic/round collor.jpg";
+import straightcuffs from "../assets/Pic/straight cuffs.jpg";
+import embroideredcuffs from "../assets/Pic/embroidered cuffs.jpg";
+import notchlapel from "../assets/Pic/notch lapel.jpg";
+import peaklapel from "../assets/Pic/peak lapel.jpg";
+import doublebreasted from "../assets/Pic/double breasted.jpg";
+import slimfit from "../assets/Pic/slim fit.jpg";
+import cuffed from "../assets/Pic/cuffed.jpg";
+import pleated from "../assets/Pic/pleated.jpg";
+import straightfit from "../assets/Pic/straight fit.jpg";
+import singlebreasted from "../assets/Pic/single breasted.jpg";
+import patchpockets from "../assets/Pic/patch pockets.jpg";
+import classicfit from "../assets/Pic/classic fit.jpg";
+import buttondowncollar from "../assets/Pic/button down.jpg";
+import spreadcollar from "../assets/Pic/spread collor.jpg";
+import frenchcuffs from "../assets/Pic/french cuffs.jpg";
+import casualfit from "../assets/Pic/casual fit.jpg";
 
 const garmentImages = {
   Kurta: kurta,
@@ -12,6 +30,27 @@ const garmentImages = {
   Trouser: trouser,
   Blazer: blazer,
   Shirt: shirt,
+};
+
+const styleImages = {
+  "Band Collar": bandcollor,
+  "Round Collar": roundcollor,
+  "Straight Cuffs": straightcuffs,
+  "Embroidered Cuffs": embroideredcuffs,
+  "Notch Lapel": notchlapel,
+  "Peak Lapel": peaklapel,
+  "Double Breasted": doublebreasted,
+  "Slim Fit": slimfit,
+  Cuffed: cuffed,
+  Pleated: pleated,
+  "Straight Fit": straightfit,
+  "Single Breasted": singlebreasted,
+  "Patch Pockets": patchpockets,
+  "Classic Fit": classicfit,
+  "Button Down Collar": buttondowncollar,
+  "Spread Collar": spreadcollar,
+  "French Cuffs": frenchcuffs,
+  "Casual Fit": casualfit,
 };
 
 const garments = {
@@ -55,6 +94,7 @@ const garments = {
 export default function StitchingPage() {
   const [selectedGarment, setSelectedGarment] = useState(null);
   const [selectedStyles, setSelectedStyles] = useState([]);
+  const [showForm, setShowForm] = useState(false); // new state for modal
 
   // Toggle selection (add/remove style)
   const handleStyleClick = (style) => {
@@ -106,7 +146,7 @@ export default function StitchingPage() {
             {selectedGarment} Styles
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {garments[selectedGarment].styles.map((style, idx) => (
+            {garments[selectedGarment].styles.map((style) => (
               <div
                 key={style}
                 onClick={() => handleStyleClick(style)}
@@ -117,13 +157,13 @@ export default function StitchingPage() {
                 }`}
               >
                 {/* Style image */}
-                <img
-                  src={`../assets/${selectedGarment.toLowerCase()}-${
-                    idx + 1
-                  }.jpg`}
-                  alt={style}
-                  className="w-full h-24 object-cover rounded-lg mb-2"
-                />
+                {styleImages[style] && (
+                  <img
+                    src={styleImages[style]}
+                    alt={style}
+                    className="w-80 h-30 object-cover rounded-lg mb-2"
+                  />
+                )}
                 {style}
               </div>
             ))}
@@ -138,8 +178,37 @@ export default function StitchingPage() {
                   {selectedGarment} – {selectedStyles.join(", ")}
                 </span>
               </p>
+
+              {/* Add Measurement Button */}
+              <button
+                onClick={() => setShowForm(true)}
+                className="mt-4 px-6 py-2 bg-orange-700 text-white font-semibold rounded-lg shadow hover:bg-orange-800 transition"
+              >
+                Add Measurement
+              </button>
             </div>
           )}
+        </div>
+      )}
+      {showForm && (
+        <div className="fixed inset-0 flex justify-end bg-opacity-50 z-50">
+          <div className="bg-white w-full max-w-md h- shadow-lg transform transition-transform duration-300 ease-in-out">
+            {/* Header with Close Button */}
+            <div className="flex justify-between items-center p-4 border-b">
+
+              <button
+                onClick={() => setShowForm(false)}
+                className="text-gray-500 hover:text-gray-700 text-2xl"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="p-6 overflow-y-auto h-[calc(100%-4rem)]">
+              <MeasurementForm />
+            </div>
+          </div>
         </div>
       )}
     </div>

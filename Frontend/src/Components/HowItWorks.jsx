@@ -48,7 +48,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div
+          {/* <div
             onClick={() => navigate("/tailoring")}
             className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-md cursor-pointer hover:shadow-xl hover:-translate-y-2 transform transition"
           >
@@ -73,6 +73,35 @@ export default function HowItWorks() {
             </h3>
             <p className="text-gray-600">
               Enter your body measurements with our step-by-step guide.
+            </p>
+          </div> */}
+
+          <div
+            onClick={() => navigate("/tailoring")}
+            className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-md cursor-pointer hover:shadow-xl hover:-translate-y-2 transform transition"
+          >
+            <svg
+              className="w-20 h-20 text-orange-500 mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              role="img"
+              aria-label="Select Design & Style"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            <h3 className="text-xl font-semibold text-gray-800">
+              Select Template & Style
+            </h3>
+            <p className="text-gray-600">
+              <p>(Optional)</p>
+              Customize your outfit with our tailoring service. <br />
             </p>
           </div>
 

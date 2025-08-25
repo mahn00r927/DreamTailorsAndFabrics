@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./Components/Navbar";
 import { HeroSection } from "./Components/HeroSection";
 import { FabricSection } from "./Components/FabricSection";
@@ -16,11 +16,19 @@ import CartPage from "./Components/Cart";
 import Checkout from "./Pages/Checkout";
 import MeasurementForm from "./Components/MeasurementForm";
 import Dashboard from "./Admin/Pages/Dashboard";
-function App() {
+
+function AppContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  // Check if current route starts with "/dashboard"
+  const isAdminRoute = location.pathname.startsWith("/dashboard");
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {/* Show Navbar only if not admin route */}
+      {!isAdminRoute && <Navbar />}
+
       <Routes>
         <Route
           path="/"
@@ -41,13 +49,25 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/tailoring" element={<TailoringPage />} />
-        <Route path="/account" element={<AccountPage/>}></Route>
-        <Route path='/cart' element={<CartPage/>}/>
-        <Route path='/checkout' element={<Checkout/>}></Route>
-        <Route path='/form' element={<MeasurementForm/>}></Route>
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/form" element={<MeasurementForm />} />
+
+        {/* Admin Route */}
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      <Footer />
+
+      {/* Show Footer only if not admin route */}
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
