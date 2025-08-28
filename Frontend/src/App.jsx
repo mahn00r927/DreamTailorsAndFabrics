@@ -12,9 +12,9 @@ import { AuthSidebar } from "./Components/AuthSidebar";
 import { useState } from "react";
 import TailoringPage from "./Pages/Tailoring";
 import AccountPage from "./Pages/AccountPage";
-import CartPage from "./Components/Cart";
+import CartPage from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
-import MeasurementForm from "./Components/MeasurementForm";
+import MeasurementForm from "./Pages/MeasurementForm";
 import Dashboard from "./Admin/Pages/Dashboard";
 
 function AppContent() {
@@ -52,7 +52,7 @@ function AppContent() {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/form" element={<MeasurementForm />} />
+        <Route path="/measurement" element={<MeasurementForm />} />
 
         {/* Admin Route */}
         <Route path="/dashboard" element={<Dashboard />} />

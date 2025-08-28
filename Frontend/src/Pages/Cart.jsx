@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import dress2 from "../assets/Pic/dress2.png";
 import dress3 from "../assets/Pic/dress3.png";
@@ -56,7 +57,7 @@ export default function CartPage() {
   };
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
-
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center">
       <div className="w-full max-w-6xl bg-white shadow-xl rounded-2xl p-8">
@@ -113,7 +114,10 @@ export default function CartPage() {
                 <span className="text-orange-600 text-2xl">Rs. {total}</span>
               </h2>
 
-              <button className="px-8 py-3 bg-orange-600 text-white rounded-xl shadow-md hover:bg-orange-700 transition">
+              <button
+                className="px-8 py-3 bg-orange-600 text-white rounded-xl shadow-md hover:bg-orange-700 transition cursor-pointer"
+                onClick={() => navigate("/checkout")}
+              >
                 Proceed to Checkout
               </button>
             </div>

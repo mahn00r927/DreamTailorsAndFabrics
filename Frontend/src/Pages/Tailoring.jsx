@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MeasurementForm from "../Components/MeasurementForm";
+import { useNavigate } from "react-router-dom"; // 👈 add this
 import kurta from "../assets/Pic/kurta.jpg";
 import suit from "../assets/Pic/suit.jpg";
 import trouser from "../assets/Pic/trouser.jpg";
@@ -94,9 +94,8 @@ const garments = {
 export default function StitchingPage() {
   const [selectedGarment, setSelectedGarment] = useState(null);
   const [selectedStyles, setSelectedStyles] = useState([]);
-  const [showForm, setShowForm] = useState(false); // new state for modal
+  const navigate = useNavigate(); // 👈 for navigation
 
-  // Toggle selection (add/remove style)
   const handleStyleClick = (style) => {
     if (selectedStyles.includes(style)) {
       setSelectedStyles(selectedStyles.filter((s) => s !== style));
@@ -126,7 +125,6 @@ export default function StitchingPage() {
                 : "bg-white text-gray-800"
             }`}
           >
-            {/* Garment Image */}
             <img
               src={garmentImages[garment]}
               alt={garment}
@@ -156,7 +154,6 @@ export default function StitchingPage() {
                     : "bg-gray-100 text-gray-800 hover:bg-indigo-100"
                 }`}
               >
-                {/* Style image */}
                 {styleImages[style] && (
                   <img
                     src={styleImages[style]}
@@ -181,34 +178,13 @@ export default function StitchingPage() {
 
               {/* Add Measurement Button */}
               <button
-                onClick={() => setShowForm(true)}
+                onClick={() => navigate("/measurement")} 
                 className="mt-4 px-6 py-2 bg-orange-700 text-white font-semibold rounded-lg shadow hover:bg-orange-800 transition"
               >
                 Add Measurement
               </button>
             </div>
           )}
-        </div>
-      )}
-      {showForm && (
-        <div className="fixed inset-0 flex justify-end bg-opacity-50 z-50">
-          <div className="bg-white w-full max-w-md h- shadow-lg transform transition-transform duration-300 ease-in-out">
-            {/* Header with Close Button */}
-            <div className="flex justify-between items-center p-4 border-b">
-
-              <button
-                onClick={() => setShowForm(false)}
-                className="text-gray-500 hover:text-gray-700 text-2xl"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Scrollable Content */}
-            <div className="p-6 overflow-y-auto h-[calc(100%-4rem)]">
-              <MeasurementForm />
-            </div>
-          </div>
         </div>
       )}
     </div>
